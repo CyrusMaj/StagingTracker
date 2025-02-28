@@ -1,6 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using StagingTracker.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var conn = builder.Configuration.GetConnectionString("StagingTrackerDBConnection");
+builder.Services.AddDbContext<StagingTrackerDbContext>(options => options.UseSqlServer(conn));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,0 +1,59 @@
+@model IEnumerable<StagingTracker.Data.Receiving>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseOrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityReceived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceivedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseOrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityReceived)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceivedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReceivingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReceivingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReceivingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
