@@ -4,6 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
+<br/>
 <h1>Create</h1>
 
 <h4>Dispatching</h4>
@@ -35,15 +36,13 @@
                 <input asp-for="CarrierId" class="form-control" />
                 <span asp-validation-for="CarrierId" class="text-danger"></span>
             </div>
+            <br/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-secondary" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

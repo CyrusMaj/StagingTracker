@@ -1,13 +1,15 @@
 @model IEnumerable<StagingTracker.Data.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Product";
 }
 
-<h1>Index</h1>
+<br/>
+<h1>Product</h1>
+<br/>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +39,9 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>
         </tr>
 }
