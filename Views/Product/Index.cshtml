@@ -41,9 +41,44 @@
             <td>
                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                @* <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> *@
+                <button data-itemid="@item.ProductId" class="btn btn-danger deleteBtn" type="button">Delete</button>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<form asp-action="Delete" id="productDeleteForm" method="post">
+    <input type="hidden" id="ProductId" name="id" />
+</form>
+
+@section Scripts {
+    <script>
+        $(function(){
+            $('.deleteBtn').click(function(e){
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                        });
+                        var btn = $(this);
+                        var id = btn.data('itemid');
+                        $('#ProductId').val(id);
+                        $('#productDeleteForm').submit();
+                    }
+                });
+            })
+        })
+    </script>
+}
