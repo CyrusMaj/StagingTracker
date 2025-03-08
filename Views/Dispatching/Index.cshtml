@@ -51,8 +51,8 @@
                 @Html.DisplayFor(modelItem => item.Product.ProductId)
             </td>
             <td>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.DispatchId">Details</a>
                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.DispatchId">Edit</a>
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.DispatchId">Details</a>
                 @* <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DispatchId">Delete Old</a> *@
                 <button data-itemid="@item.DispatchId" class="btn btn-danger deleteBtn" type="button">Delete</button>
             </td>
@@ -61,6 +61,7 @@
     </tbody>
 </table>
 
+@* Form and JQuery function for Delete popup window and datatables *@
 <form asp-action="Delete" id="dispatchDeleteForm" method="post">
     <input type="hidden" id="DispatchId" name="id" />
 </form>
@@ -68,6 +69,9 @@
 @section Scripts {
     <script>
         $(function(){
+            new DataTable('.table');
+            @* $('.table').DataTable(); *@
+
             $('.deleteBtn').click(function(e){
                 Swal.fire({
                     title: "Are you sure?",

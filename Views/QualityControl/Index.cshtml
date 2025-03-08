@@ -45,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Receiving.ReceivingId)
             </td>
             <td>
+                <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Qcid">Details</a>
                 <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Qcid">Edit</a>
-                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Qcid">Details</a>
                 @* <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Qcid">Delete</a> *@
                 <button data-itemid="@item.Qcid" class="btn btn-danger deleteBtn" type="button">Delete</button>
             </td>
@@ -55,6 +55,7 @@
     </tbody>
 </table>
 
+@* Form and JQuery function for Delete popup window *@
 <form asp-action="Delete" id="qcDeleteForm" method="post">
     <input type="hidden" id="Qcid" name="id" />
 </form>
@@ -62,6 +63,8 @@
 @section Scripts {
     <script>
         $(function(){
+            new DataTable('.table');
+
             $('.deleteBtn').click(function(e){
                 Swal.fire({
                     title: "Are you sure?",

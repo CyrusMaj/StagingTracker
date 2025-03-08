@@ -39,8 +39,8 @@
                 @Html.DisplayFor(modelItem => item.UnitPrice)
             </td>
             <td>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
                 @* <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> *@
                 <button data-itemid="@item.ProductId" class="btn btn-danger deleteBtn" type="button">Delete</button>
             </td>
@@ -49,6 +49,7 @@
     </tbody>
 </table>
 
+@* Form and JQuery function for Delete popup window *@
 <form asp-action="Delete" id="productDeleteForm" method="post">
     <input type="hidden" id="ProductId" name="id" />
 </form>
@@ -56,6 +57,8 @@
 @section Scripts {
     <script>
         $(function(){
+            new DataTable('.table');
+
             $('.deleteBtn').click(function(e){
                 Swal.fire({
                     title: "Are you sure?",
