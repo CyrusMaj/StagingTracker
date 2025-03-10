@@ -12,7 +12,8 @@ public class DispatchingMetadata
     [Display(Name = "Order ID")]
     public int? OrderId { get; set; }
 
-    // public int? ProductId { get; set; }
+    [Display(Name = "Product ID")]
+    public int? ProductId { get; set; }
 
     [Display(Name = "Quantity Dispatched")]
     public int? QuantityDispatched { get; set; }

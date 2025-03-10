@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -56,6 +57,7 @@ namespace StagingTracker.Controllers
         // POST: Dispatching/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DispatchId,OrderId,ProductId,QuantityDispatched,DispatchDate,CarrierId")] Dispatching dispatching)
@@ -92,6 +94,7 @@ namespace StagingTracker.Controllers
         // POST: Dispatching/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DispatchId,OrderId,ProductId,QuantityDispatched,DispatchDate,CarrierId")] Dispatching dispatching)
@@ -147,6 +150,7 @@ namespace StagingTracker.Controllers
         }
 
         // POST: Dispatching/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

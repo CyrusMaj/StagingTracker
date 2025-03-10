@@ -27,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.SupplierId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                @Html.DisplayNameFor(model => model.ProductId)
             </th>
             <th></th>
         </tr>
@@ -48,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.SupplierId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductId)
+                @Html.DisplayFor(modelItem => item.ProductId)
             </td>
             <td>
                 <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.ReceivingId">Details</a>

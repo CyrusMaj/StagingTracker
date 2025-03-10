@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.InspectorName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Receiving)
+                @Html.DisplayNameFor(model => model.ReceivingId)
             </th>
             <th></th>
         </tr>
@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.InspectorName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Receiving.ReceivingId)
+                @Html.DisplayFor(modelItem => item.ReceivingId)
             </td>
             <td>
                 <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.Qcid">Details</a>
