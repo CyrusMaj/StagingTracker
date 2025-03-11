@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ReceivingId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PurchaseOrderId)
             </th>
             <th>
@@ -29,12 +32,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductId)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceivingId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PurchaseOrderId)
             </td>

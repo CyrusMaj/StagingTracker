@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.DispatchId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.QuantityDispatched)
             </th>
             <th>
@@ -29,12 +32,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductId)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DispatchId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuantityDispatched)
             </td>
@@ -45,10 +51,12 @@
                 @Html.DisplayFor(modelItem => item.CarrierId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Order.OrderId)
+                @Html.DisplayFor(modelItem => item.OrderId)
+                @* item.Order.OrderId *@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductId)
+                @Html.DisplayFor(modelItem => item.ProductId)
+                @* item.Product.ProductId *@
             </td>
             <td>
                 <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.DispatchId">Details</a>
