@@ -1,0 +1,101 @@
+@model IEnumerable<StagingTracker.Data.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br/>
+<h1>Index</h1>
+<br/>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CustomerId">Details</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a>
+                @* <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a> *@
+                <button data-itemid="@item.CustomerId" class="btn btn-danger deleteBtn" type="button">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@* Form and JQuery function for Delete popup window and datatables *@
+<form asp-action="Delete" id="customerDeleteForm" method="post">
+    <input type="hidden" id="CustomerId" name="id" />
+</form>
+
+@section Scripts {
+    <script>
+        $(function(){
+            new DataTable('.table');
+            @* $('.table').DataTable(); *@
+
+            $('.deleteBtn').click(function(e){
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                        });
+                        var btn = $(this);
+                        var id = btn.data('itemid');
+                        $('#CustomerId').val(id);
+                        $('#customerDeleteForm').submit();
+                    }
+                });
+            })
+        })
+    </script>
+}

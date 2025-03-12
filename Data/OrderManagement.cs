@@ -15,5 +15,7 @@ public partial class OrderManagement
 
     public string? Status { get; set; }
 
+    public virtual Customer? Customer { get; set; }
+
     public virtual ICollection<Dispatching> Dispatchings { get; set; } = new List<Dispatching>();
 }

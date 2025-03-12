@@ -6,14 +6,12 @@ namespace StagingTracker.Data;
 
 public partial class StagingTrackerDbContext : DbContext
 {
-    public StagingTrackerDbContext()
-    {
-    }
-    
     public StagingTrackerDbContext(DbContextOptions<StagingTrackerDbContext> options)
         : base(options)
     {
     }
+
+    public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Dispatching> Dispatchings { get; set; }
 
@@ -27,6 +25,25 @@ public partial class StagingTrackerDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64B875CB28DF");
+
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.Address)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.ContactEmail)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoneNumber)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<Dispatching>(entity =>
         {
             entity.HasKey(e => e.DispatchId).HasName("PK__Dispatch__434DBD7592EA371E");
@@ -58,6 +75,10 @@ public partial class StagingTrackerDbContext : DbContext
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.OrderManagements)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK_OrderManagement_Customers");
         });
 
         modelBuilder.Entity<Product>(entity =>
